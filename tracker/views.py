@@ -6,6 +6,8 @@ from .models import Task, SubTask, Date
 # Create your views here.
 
 def index(request):
-    task_list = Task.objects.all()
-    data = serializers.serialize('json', task_list)
+    task_list = Task.objects.last()
+    subtask_list = SubTask.objects.filter(parent_task=task_list).last()
+    date_list = Date.objects.filter(parent_subtask=subtask_list)
+    data = serializers.serialize('json', date_list)
     return HttpResponse(data, content_type='application/json')
