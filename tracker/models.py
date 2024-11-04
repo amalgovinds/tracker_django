@@ -4,7 +4,7 @@ from django.db import models
 #Date used to order Task and SubTask models by creation
 class Task(models.Model):
     task_name = models.CharField(max_length=200)
-    date_created = models.DateTimeField("Date of Creation")
+    date_created = models.DateTimeField("Date of Creation", null=True, blank=True)
 
     def __str__(self):
         return self.task_name
@@ -12,7 +12,7 @@ class Task(models.Model):
 class SubTask(models.Model):
     parent_task = models.ForeignKey(Task, related_name="sub_task", on_delete=models.CASCADE)
     subtask_name = models.CharField(max_length=200)
-    date_created = models.DateTimeField("Date of Creation")
+    date_created = models.DateTimeField("Date of Creation", null=True, blank=True)
 
     def __str__(self):
         return self.subtask_name
