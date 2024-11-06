@@ -7,20 +7,21 @@ class Task(models.Model):
     date_created = models.DateTimeField("Date of Creation", null=True, blank=True)
 
     def __str__(self):
-        return self.task_name
+        return self.task
 
 class SubTask(models.Model):
     parent_task = models.ForeignKey(Task, related_name="subtasks", on_delete=models.CASCADE)
     subtask = models.CharField(max_length=200)
     date_created = models.DateTimeField("Date of Creation", null=True, blank=True)
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.subtask_name
+        return self.subtask
 
 class Date(models.Model):
     parent_subtask = models.ForeignKey(SubTask, related_name="dates", on_delete=models.CASCADE)
     date = models.DateTimeField("Date of Execution")
-    status = models.BooleanField()
+    status = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.date.date())
