@@ -12,6 +12,7 @@ from .serializers import TaskSerializer
 class TaskList(generics.ListCreateAPIView):
     """
     List All Tasks or Create a new Task.
+    GET + POST
     """
     queryset = Task.objects.order_by("date_created")
     serializer_class = TaskSerializer
@@ -19,6 +20,7 @@ class TaskList(generics.ListCreateAPIView):
 class TaskDetails(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve, update or delete a Task instance.
+    GET + UPDATE + DELETE
     """
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
