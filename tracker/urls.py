@@ -1,17 +1,13 @@
-from django.urls import path
-from rest_framework.urlpatterns import format_suffix_patterns
-from .views import TaskList, TaskDetails, SubTaskList, SubTaskDetails, DateList, DateDetails
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import TaskViewSet, SubTaskViewSet, DateViewSet
 from . import views
 
+router = DefaultRouter()
+router.register(r'tasks', TaskViewSet, basename='task') 
+router.register(r'subtasks', SubTaskViewSet, basename='subtask')
+router.register(r'dates', DateViewSet, basename='date')
 urlpatterns = [
-    path('tasks', TaskList.as_view(), name="tasks"),
-    path('tasks/<int:pk>', TaskDetails.as_view()),
-    path('tasks/subtasks', SubTaskList.as_view(), name="subtasks"),
-    path('tasks/subtasks/<int:pk>', SubTaskDetails.as_view()),
-    path('tasks/subtasks/dates', DateList.as_view(), name="dates"),
-    path('tasks/subtasks/dates/<int:pk>', DateDetails.as_view()),
+    path('', include(router.urls)),
     path('', views.api_root),
-
 ]
-
-urlpatterns = format_suffix_patterns(urlpatterns)
