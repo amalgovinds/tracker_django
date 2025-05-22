@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics, status, viewsets
 from .models import Task, SubTask, Date
-from .serializers import TaskSerializer, SubTaskSerializer, DateSerializer
+from .serializers import TaskReadSerializer,TaskWriteSerializer, SubTaskReadSerializer, SubTaskWriteSerializer, DateReadSerializer, DateWriteSerializer
 
 @api_view(['GET'])
 def api_root(request, format=None):
@@ -25,7 +25,10 @@ class TaskViewSet(viewsets.ModelViewSet):
     `update` and `destroy` actions.
     """
     queryset = Task.objects.order_by("date_created")
-    serializer_class = TaskSerializer
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve']:
+            return TaskReadSerializer
+        return TaskWriteSerializer
 
 class SubTaskViewSet(viewsets.ModelViewSet):
     """
@@ -33,7 +36,10 @@ class SubTaskViewSet(viewsets.ModelViewSet):
     `update` and `destroy` actions.
     """
     queryset = SubTask.objects.order_by("date_created")
-    serializer_class = SubTaskSerializer
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve']:
+            return SubTaskReadSerializer
+        return SubTaskWriteSerializer
 
 class DateViewSet(viewsets.ModelViewSet):
     """
@@ -41,7 +47,10 @@ class DateViewSet(viewsets.ModelViewSet):
     `update` and `destroy` actions.
     """
     queryset = Date.objects.order_by("date")
-    serializer_class = DateSerializer
+    def get_serializer_class(self):
+        if self.action in ['list', 'retrieve']:
+            return DateReadSerializer
+        return DateWriteSerializer
 
 # Create your views here.
 
