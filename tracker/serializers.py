@@ -10,7 +10,7 @@ class SubTaskSerializer(serializers.ModelSerializer):
     dates = DateSerializer(many=True, required=False)
     class Meta:
         model = SubTask
-        fields = ['id', 'name', 'date_created', 'completed', 'dates'] 
+        fields = ['id', 'name', 'date_created', 'completed', 'task', 'dates'] 
 
     def create(self, validated_data):
         date_data = validated_data.pop('dates', [])
