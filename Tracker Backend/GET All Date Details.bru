@@ -1,0 +1,19 @@
+meta {
+  name: GET All Date Details
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/tracker/dates
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Append {subtask_id} at end of url to obtain details about a specific task
+}

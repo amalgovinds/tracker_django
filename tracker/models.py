@@ -19,7 +19,7 @@ class SubTask(models.Model):
         return self.name
 
 class Date(models.Model):
-    subtask = models.ManyToManyField(SubTask, related_name="dates")
+    subtask = models.ForeignKey(SubTask, related_name="dates", on_delete=models.CASCADE)
     date = models.DateTimeField("Date of Execution")
     status = models.BooleanField(default=True)
 

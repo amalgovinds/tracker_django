@@ -11,7 +11,7 @@ class SubTaskReadSerializer(serializers.ModelSerializer):
     dates = DateReadSerializer(many=True, required=False)
     class Meta:
         model = SubTask
-        fields = ['id', 'name', 'date_created', 'completed', 'task', 'dates'] 
+        fields = ['id', 'name', 'date_created', 'completed', 'dates'] 
 
 class TaskReadSerializer(serializers.ModelSerializer):
     subtasks = SubTaskReadSerializer(many=True, read_only=True)

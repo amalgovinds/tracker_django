@@ -1,0 +1,19 @@
+meta {
+  name: GET All SubTask Details
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/tracker/subtasks
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Append {subtask_id} at end of url to obtain details about a specific task
+}
