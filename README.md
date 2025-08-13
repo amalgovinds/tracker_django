@@ -6,7 +6,6 @@
 1. Implement Nested Routing in Django
 2. Improve Serializers(DRY)
 3. Delpoyment Pipeline 
-4. Glorified TODO
 
 # Notes
 
