@@ -1,31 +1,39 @@
 from .models import Task, SubTask, Date
 from rest_framework import serializers
 
-class DateSerializer(serializers.ModelSerializer):
+#Nested serializer for read_only
+class DateReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Date
-        fields = ['id', 'date', 'parent_subtask', 'status']
+        fields = ['id', 'date']
 
-class SubTaskSerializer(serializers.ModelSerializer):
-    dates = DateSerializer(many=True, read_only=True)
+class SubTaskReadSerializer(serializers.ModelSerializer):
+    dates = DateReadSerializer(many=True, required=False)
     class Meta:
         model = SubTask
-        fields = ['id', 'subtask', 'parent_task', 'date_created', 'completed', 'dates'] 
-    """ Create a Wriatble nested Serializer (Future Scope)"""
-    # def create(self, validated_data):
-    #     date_data = validated_data.pop('dates')
-    #     subtask = SubTask.objects.create(**validated_data)
-    #     for d_data in date_data:
-    #         Date.objects.create(subtask=subtask, **d_data)
-    #     return subtask
+        fields = ['id', 'name', 'date_created', 'completed', 'dates'] 
 
-class TaskSerializer(serializers.ModelSerializer):
-    # subtasks = SubTaskSerializer(many=True, read_only=True)
-    #SerializerMethodField is read_only by default
-    subtasks = serializers.SerializerMethodField()
+class TaskReadSerializer(serializers.ModelSerializer):
+    subtasks = SubTaskReadSerializer(many=True, read_only=True)
     class Meta:
         model = Task
-        fields = ['id', 'task', 'date_created', 'subtasks']
+        fields = ['id', 'name', 'date_created', 'subtasks']
     def get_subtasks(self, task):
         subtasks = task.subtasks.order_by("completed")
-        return SubTaskSerializer(subtasks, many=True).data
+        return SubTaskReadSerializer(subtasks, many=True).data
+    
+#Flat serializer for write_only
+class DateWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Date
+        fields = ['id', 'subtask', 'date', 'status']
+
+class SubTaskWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SubTask
+        fields = ['id', 'task', 'name', 'date_created', 'completed']
+
+class TaskWriteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Task
+        fields = ['id', 'name', 'date_created']

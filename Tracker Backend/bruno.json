@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Tracker Backend",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
