@@ -1,0 +1,15 @@
+meta {
+  name: GET ToDo List
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/todo/tasks/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,19 @@
+meta {
+  name: DELETE ToDo Task
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{base_url}}/todo/tasks/4/
+  body: json
+  auth: inherit
+}
+
+body:multipart-form {
+  name: ""
+}
+
+settings {
+  encodeUrl: true
+}

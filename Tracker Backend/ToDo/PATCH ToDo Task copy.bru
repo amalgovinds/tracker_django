@@ -1,0 +1,30 @@
+meta {
+  name: PATCH ToDo Task copy
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{base_url}}/todo/tasks/3/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Testing ToDo",
+    "is_completed": "True"
+  }
+}
+
+body:multipart-form {
+  name: ""
+}
+
+settings {
+  encodeUrl: true
+}
+
+docs {
+  Append TASK_ID at end of url to update that particular Task
+}

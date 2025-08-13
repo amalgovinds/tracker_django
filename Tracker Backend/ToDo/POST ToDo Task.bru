@@ -1,0 +1,26 @@
+meta {
+  name: POST ToDo Task
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/todo/tasks/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "TaskName",
+    "is_completed": "False"
+  }
+}
+
+body:multipart-form {
+  name: ""
+}
+
+settings {
+  encodeUrl: true
+}
