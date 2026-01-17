@@ -1,0 +1,25 @@
+meta {
+  name: Create SubTask
+  type: http
+  seq: 10
+}
+
+post {
+  url: {{base_url}}/tracker/subtasks/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "task":1,
+      "name": "Jim",
+      "date_created": "2024-10-21T19:30:00+05:30",
+      "completed": false
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

@@ -1,0 +1,26 @@
+meta {
+  name: Partial Update Task
+  type: http
+  seq: 7
+}
+
+patch {
+  url: {{base_url}}/tracker/tasks/26/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Task Test 2"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Append {task_id} at end of url to obtain details about a specific task
+}

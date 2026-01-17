@@ -1,11 +1,11 @@
 meta {
-  name: PATCH ToDo Task copy
+  name: UPDATE ToDo Task
   type: http
-  seq: 4
+  seq: 5
 }
 
-patch {
-  url: {{base_url}}/todo/tasks/3/
+put {
+  url: {{base_url}}/todo/tasks/5/
   body: json
   auth: inherit
 }
@@ -13,7 +13,7 @@ patch {
 body:json {
   {
     "name": "Testing ToDo",
-    "is_completed": "True"
+    "is_completed": false
   }
 }
 
@@ -23,6 +23,7 @@ body:multipart-form {
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
 
 docs {

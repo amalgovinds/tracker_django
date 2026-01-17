@@ -1,0 +1,33 @@
+meta {
+  name: Update Date
+  type: http
+  seq: 18
+}
+
+put {
+  url: {{base_url}}/tracker/dates/47/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "subtask":1,
+      "date": "2024-10-21T19:30:00+05:30",
+      "status": true
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  # PATCH & PUT can be used to remap the relation b/w subtasks and dates
+  
+  Not that PUT requires all the non-omitable fileds
+  
+  (required = not allow_null and not has_default) including the relation
+  
+}

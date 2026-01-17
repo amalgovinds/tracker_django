@@ -1,0 +1,16 @@
+meta {
+  name: DEL SubTask
+  type: http
+  seq: 11
+}
+
+delete {
+  url: {{base_url}}/tracker/subtasks/30/
+  body: json
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

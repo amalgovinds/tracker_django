@@ -1,0 +1,20 @@
+meta {
+  name: GET Task
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/tracker/tasks/25/
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Append {task_id} at end of url to obtain details about a specific task
+}

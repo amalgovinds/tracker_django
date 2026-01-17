@@ -1,0 +1,28 @@
+meta {
+  name: Create Date
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{base_url}}/tracker/dates/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "subtask":1,
+      "date": "2024-10-21T19:30:00+05:30",
+      "status": false
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Append {subtask_id} at end of url to obtain details about a specific task
+}

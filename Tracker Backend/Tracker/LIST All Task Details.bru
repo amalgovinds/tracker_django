@@ -1,7 +1,7 @@
 meta {
-  name: GET All Task Details
+  name: LIST All Task Details
   type: http
-  seq: 3
+  seq: 1
 }
 
 get {
@@ -12,8 +12,11 @@ get {
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
 
 docs {
+  # All are nested read serializers due to which the entire details are given
+  
   Append {task_id} at end of url to obtain details about a specific task
 }

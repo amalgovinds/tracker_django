@@ -1,0 +1,27 @@
+meta {
+  name: Create Task
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/tracker/tasks/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Task Test",
+    "date_created": "2026-01-21T19:30:00+05:30"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  Append {task_id} at end of url to obtain details about a specific task
+}

@@ -1,17 +1,18 @@
 meta {
-  name: GET All Date Details
+  name: DEL Date
   type: http
-  seq: 1
+  seq: 16
 }
 
-get {
-  url: {{base_url}}/tracker/dates/
-  body: none
+delete {
+  url: {{base_url}}/tracker/dates/41/
+  body: json
   auth: inherit
 }
 
 settings {
   encodeUrl: true
+  timeout: 0
 }
 
 docs {

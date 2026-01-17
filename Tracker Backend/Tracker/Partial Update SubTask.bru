@@ -1,0 +1,28 @@
+meta {
+  name: Partial Update SubTask
+  type: http
+  seq: 12
+}
+
+patch {
+  url: {{base_url}}/tracker/subtasks/31/
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "name": "TEST",
+      "date_created": "2025-10-21T19:30:00+05:30",
+      "task":1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
+
+docs {
+  PATCH & PUT can be used to remap the relation b/w task and subtasks
+}
